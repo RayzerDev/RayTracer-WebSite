@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{$titre}}</title>
     @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/scss/app.scss'])
 </head>
 <body>
@@ -11,4 +11,7 @@
     {{$slot}}
 </div>
 </body>
+<footer>
+    <x-footer></x-footer>
+</footer>
 </html>
