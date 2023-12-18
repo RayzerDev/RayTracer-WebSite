@@ -5,6 +5,7 @@ Ce projet concerne la suite de notre projet lié au *RayTracer*. C'est un site w
 - PhpStorm
 - Laravel
 - Tailwind CSS
+- Bootstrap
 
 ## Commandes utiles
 1. Récuperer le projet
