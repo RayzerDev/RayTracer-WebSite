@@ -1,0 +1,10 @@
+size 640 480
+output tp42-dir.png
+camera 0 0 4 0 0 0 0 1 0 45
+
+directional 1 1 1 1 1 1
+
+diffuse 1 0 0
+
+sphere -1 0 0 1
+sphere 1 0 0 1
