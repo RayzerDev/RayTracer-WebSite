@@ -1,6 +1,5 @@
 <x-layout titre="Accueil">
-    <div>
-        <h1>Bienvenue sur notre projet RayTracer</h1>
-        <h2>Page home</h2>
+    <div class="container d-flex align-items-center justify-content-center vh-100">
+        <h1 class="text-center">Bienvenue sur notre projet RayTracer (Page home)</h1>
     </div>
 </x-layout>
