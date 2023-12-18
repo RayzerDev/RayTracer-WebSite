@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('accueil');
-});
+Route::view('/', 'accueil');
+
+Route::get('home', function () {
+    return view('home');
+})->middleware(['auth'])->name('home');
+
+Route::view('a-propos', 'a-propos');
+
+Route::view('contact', 'contact');
