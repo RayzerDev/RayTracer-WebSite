@@ -28,8 +28,8 @@ class UtilisateurFactory extends Factory
             $admin = fake()->boolean(0);
         }
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'nom' => fake()->name(),
+            'mail' => fake()->unique()->safeEmail(),
             'password' => static::$password ??= Hash::make('password'),
             'admin' => $admin,
             'avatar'=> fake()->url()
