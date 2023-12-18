@@ -12,15 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('scenes', function (Blueprint $table) {
-            $table->id('idScene');
-            $table->string('nomScene');
+            $table->id();
+            $table->unsignedBigInteger('userId');
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+            $table->string('nom');
+            $table->integer('equipe');
             $table->string('description');
+            $table->string('format');
             $table->string('lienVignetteImage');
             $table->string('lienExecutable');
-            $table->dateTime('dateAjout');
-            $table->string('descriptionScene');
             $table->string('lienImage');
-            $table->integer('equipe');
             $table->timestamps();
         });
     }

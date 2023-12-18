@@ -15,12 +15,11 @@ class CommentaireFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
+
     {
         return [
             'titre' => fake()->title,
-            'corps' => fake()->text,
-            'dateCreation' => now(),
-            'dateModif' => now()
+            'corp' => fake()->text
         ];
     }
 }

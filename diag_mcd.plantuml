@@ -1,49 +1,63 @@
 @startuml
 
 class Scene {
-  idScene: int
-  nomScene: string
-  descriptionScene: string
+  id: int
+  --
+  nom: string
+  equipe: int
+  description: string
+  format: string
   lienVignetteImage: string
   lienExecutable: string
-  dateAjout: datetime
   lienImage: string
-  equipe: int
+  created_at: datetime
+  updated_at: datetime
 }
 
-class Utilisateur {
-  idUser: int
-  nomUser: string
-  mail: string
+class User {
+  id: int
+  --
+  nom: string
+  email: string
   password: string
   admin: boolean
-  lienAvatar: string
+  avatar: string
+created_at: datetime
+updated_at: datetime
 }
 
 class Commentaire {
-  idCom: int
+  id: int
+  --
+  user: User
+  scene: Scene
   titre: string
-  corpsDuCommentaire: string
-  dateCreation: datetime
-  dateModif: datetime
+  corp: string
+  created_at: datetime
+  updated_at: datetime
 }
 
 class Note{
-   valeur: int
+  user: User
+  scene: Scene
+  --
+  note: int [0,5]
+  created_at: datetime
+  updated_at: datetime
 }
 
 class Favori {
-  utilisateur: Utilisateur
-  scenes: List<Scene>
+  user: User
+  scene: Scene
 }
 
-Utilisateur  --  Commentaire : commente
+User  --  Commentaire : commente
 
 Scene  --  Commentaire : concerne
 
-(Utilisateur, Scene) .. Note
+(User, Scene) .. Note
 
-(Utilisateur, Scene) .. Favori
+(User, Scene) .. Favori
 
 
 @enduml
