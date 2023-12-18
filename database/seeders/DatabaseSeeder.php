@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UtilisateurSeeder::class);
         $this->call(ComSeeder::class);
         $this->call(SceneSeeder::class);
+        $this->call(NoteSeeder::class);
     }
 }
