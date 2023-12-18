@@ -4,7 +4,6 @@ Ce projet concerne la suite de notre projet lié au *RayTracer*. C'est un site w
 ## Technologies
 - PhpStorm
 - Laravel
-- Tailwind CSS
 - Bootstrap
 
 ## Commandes utiles
@@ -16,36 +15,41 @@ git clone https://gitlab.univ-artois.fr/louis_karamucki/poc-sae3-01-grp13.git
 2. Installer les dépendences
 ``` bash
 composer install
-npm install bootstrap
-npm install scss
-npm install path
+npm install 
 ```
 
 3. Copier le fichier .env.example en .env et modifier les informations de connexion à la base de données
 ``` bash
 cp .env.example .env
 ```
-Modifier la ligne 11 par *DB_CONNECTION=sqlite*
 
 4. Générer la clé de l'application
 ``` bash
 php artisan key:generate
 ```
 
-5. Créer la base de données
+5. Créer un lien symbolique pour rendre visible le storage aux utilisateurs
 ``` bash
-vim database/database.sqlite
+php artisan storage:link
 ```
 
-6. Lancer les migrations
+6. Créer la base de données
+``` bash
+touch database/database.sqlite
+```
+
+7. Lancer les migrations
 ``` bash
 php artisan migrate
 ```
+8. Build le css
+``` bash
+npm run build
+```
 
-7. Démarrer le serveur
+9. Démarrer le serveur
 ``` bash
 php artisan serve
-npm run dev
 ```
 
   
