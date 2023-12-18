@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ComSeeder::class);
         $this->call(SceneSeeder::class);
         $this->call(NoteSeeder::class);
+        $this->call(FavoriSeeder::class);
     }
 }
