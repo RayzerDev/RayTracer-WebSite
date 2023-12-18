@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('favoris', function (Blueprint $table) {
-            $table->int('idUser');
-            $table->int('idScene');
+            $table->integer('idUser');
+            $table->integer('idScene');
             $table->timestamps();
         });
     }

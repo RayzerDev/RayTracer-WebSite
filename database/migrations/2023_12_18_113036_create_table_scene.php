@@ -20,7 +20,7 @@ return new class extends Migration
             $table->dateTime('dateAjout');
             $table->string('descriptionScene');
             $table->string('lienImage');
-            $table->int('equipe');
+            $table->integer('equipe');
             $table->timestamps();
         });
     }

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notes', function (Blueprint $table) {
-            $table->int('idUser');
-            $table->int('idScene');
-            $table->int('note');
+            $table->integer('idUser');
+            $table->integer('idScene');
+            $table->integer('note');
             $table->timestamps();
         });
     }
