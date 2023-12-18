@@ -1,32 +1,31 @@
 @startuml
 
 class Scene {
-  id_scene: int
-  nom_scene: string
-  description_scene: string
-  lien_vignette_image: string
-  lien_executable: string
-  date_ajout: datetime
-  description_scene: string
-  lien_image: string
+  idScene: int
+  nomScene: string
+  descriptionScene: string
+  lienVignetteImage: string
+  lienExecutable: string
+  dateAjout: datetime
+  lienImage: string
   equipe: int
 }
 
 class Utilisateur {
-  id_user: int
-  nom_user: string
+  idUser: int
+  nomUser: string
   mail: string
   password: string
   admin: boolean
-  avatar: string
+  lienAvatar: string
 }
 
 class Commentaire {
-  id_com: int
+  idCom: int
   titre: string
-  corps_du_commentaire: string
-  date_creation: datetime
-  date_modif: datetime
+  corpsDuCommentaire: string
+  dateCreation: datetime
+  dateModif: datetime
 }
 
 class Note{
@@ -39,9 +38,12 @@ class Favori {
 }
 
 Utilisateur  --  Commentaire : commente
-Utilisateur -- Scene : note
 
-Note ..> Utilisateur : estDonneePar
-Favori ..> Utilisateur : ChoisiEnFavori
+Scene  --  Commentaire : concerne
+
+(Utilisateur, Scene) .. Note
+
+(Utilisateur, Scene) .. Favori
+
 
 @enduml

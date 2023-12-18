@@ -1,0 +1,14 @@
+size 1024 768
+
+output rgb2.png
+
+camera 0 0 6 0 0 0 0 1 0 45
+
+directional 0 0 1 1 1 1
+
+diffuse .8 0 0
+sphere -1 1 0 1
+diffuse 0 .8 0
+sphere 1 1 0 1
+diffuse 0 0 .8
+sphere 0 -.7 0 1
