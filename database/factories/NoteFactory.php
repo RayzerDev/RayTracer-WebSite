@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Scene;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Note>
+ * @extends Factory
  */
 class NoteFactory extends Factory
 {
@@ -16,10 +18,12 @@ class NoteFactory extends Factory
      */
     public function definition(): array
     {
+        $usersId = User::all()->pluck('id');
+        $scenesId = Scene::all()->pluck('id');
         return [
-            'idUser' => fake()->numberBetween(1,30),
-            'idScene' => fake()->numberBetween(1,3),
-            'note' => fake()->numberBetween(1,5)
+            'idUser' => fake()->randomElement($usersId),
+            'idScene' => fake()->randomElement($scenesId),
+            'note' => fake()->numberBetween(0,5)
         ];
     }
 }

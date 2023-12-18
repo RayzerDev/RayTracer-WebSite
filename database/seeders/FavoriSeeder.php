@@ -13,6 +13,6 @@ class FavoriSeeder extends Seeder
      */
     public function run(): void
     {
-        Favori::factory(3)->create();
+        Favori::factory(6)->create();
     }
 }
