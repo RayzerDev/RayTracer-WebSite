@@ -23,6 +23,7 @@ class UtilisateurFactory extends Factory
     {
         if($this->nbAdmin == 3){
             $admin = fake()->boolean();
+            $this->nbAdmin++;
         }else{
             $admin = fake()->boolean(0);
         }

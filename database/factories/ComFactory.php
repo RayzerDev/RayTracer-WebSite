@@ -18,6 +18,9 @@ class ComFactory extends Factory
     {
         return [
             'titre' => fake()->titre,
+            'corps' => fake()->text,
+            'dateCreation' => now(),
+            'dateModif' => now()
         ];
     }
 }
