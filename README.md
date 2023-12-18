@@ -16,6 +16,9 @@ git clone https://gitlab.univ-artois.fr/louis_karamucki/poc-sae3-01-grp13.git
 2. Installer les dépendences
 ``` bash
 composer install
+npm install bootstrap
+npm install scss
+npm install path
 ```
 
 3. Copier le fichier .env.example en .env et modifier les informations de connexion à la base de données
