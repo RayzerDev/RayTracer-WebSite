@@ -12,9 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notes', function (Blueprint $table) {
-            $table->integer('idUser');
-            $table->integer('idScene');
+            $table->unsignedBigInteger('userId');
+            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('sceneId');
+            $table->foreign('sceneId')->references('id')->on('scenes')->onDelete('cascade');
             $table->integer('note');
+            $table->primary(["userId", "sceneId"]);
             $table->timestamps();
         });
     }
