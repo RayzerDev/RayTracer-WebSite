@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favori', function (Blueprint $table) {
-            $table->unsignedBigInteger('userId');
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('sceneId');
-            $table->foreign('sceneId')->references('id')->on('scenes')->onDelete('cascade');
-            $table->primary(["userId", "sceneId"]);
+        Schema::create('favoris', function (Blueprint $table) {
+            $table->unsignedBigInteger('idUser');
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('idScene');
+            $table->foreign('idScene')->references('id')->on('scenes')->onDelete('cascade');
             $table->timestamps();
         });
     }

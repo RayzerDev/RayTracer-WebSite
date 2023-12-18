@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('userId');
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('sceneId');
-            $table->foreign('sceneId')->references('id')->on('scenes')->onDelete('cascade');
+            $table->unsignedBigInteger('idUser');
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('idScene');
+            $table->foreign('idScene')->references('id')->on('scenes')->onDelete('cascade');
             $table->string('titre');
             $table->string('corp');
             $table->timestamps();
