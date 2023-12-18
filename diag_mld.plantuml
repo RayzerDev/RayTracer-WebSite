@@ -1,57 +1,65 @@
 @startuml
 
 
-class Scene {
-  idScene: int
+entity Scene {
+  id: int
   --
-  nomScene: string
+  idUser: int <FK>
+  nom: string
+  equipe: int
   description: string
+  format: string
   lienVignetteImage: string
   lienExecutable: string
-  dateAjout: datetime
-  descriptionScene: string
   lienImage: string
-  equipe: int
+  created_at: datetime
+  updated_at: datetime
 }
 
-class Utilisateur {
-  idUser: int
+entity User {
+  id: int
   --
-  nomUser: string
-  mail: string
+  nom: string
+  email: string
   password: string
   admin: boolean
   avatar: string
+created_at: datetime
+updated_at: datetime
 }
 
-class Commentaire {
-  idCom: int
+entity Commentaire {
+  id: int
   --
+    idUser: int <FK>
+    idScene: int <FK>
   titre: string
-  corpsDuCommentaire: string
-  dateCreation: datetime
-  dateModif: datetime
+  corp: string
+  created_at: datetime
+  updated_at: datetime
 }
 
-class Note{
+entity Note{
   idUser: int <FK>
-  idScene: int
+  idScene: int <FK>
   --
-  note: int
+  note: int [0,5]
+  created_at: datetime
+  updated_at: datetime
 }
 
-class Favori {
-  idUser: int
-  idScene: int
+entity Favori {
+  idUser: int <FK>
+  idScene: int <FK>
+  --
+    created_at: datetime
+    updated_at: datetime
 }
 
-Utilisateur "1" --> "0..*" Scene
-Utilisateur "1" --> "0..*" Commentaire
-Utilisateur "1" --> "1" Note
-Utilisateur "1" --> "0..*" Favori
-
-Scene "1" --> "0..*" Commentaire
+User "1" --> "0..*" Scene
+(User,Scene)  -->  Commentaire
+(User,Scene)  --> Note
+User "1" --> "0..*" Favori
 Scene "1" --> "0..*" Favori
-Scene "1" --> "0..*" Note
 
 @enduml
