@@ -1,8 +1,10 @@
 @startuml
 
-class Scene {
+
+entity Scene {
   id: int
   --
+  idUser: int <FK>
   nom: string
   equipe: int
   description: string
@@ -14,7 +16,7 @@ class Scene {
   updated_at: datetime
 }
 
-class User {
+entity User {
   id: int
   --
   nom: string
@@ -26,38 +28,38 @@ created_at: datetime
 updated_at: datetime
 }
 
-class Commentaire {
+entity Commentaire {
   id: int
   --
-  user: User
-  scene: Scene
+    idUser: int <FK>
+    idScene: int <FK>
   titre: string
   corp: string
   created_at: datetime
   updated_at: datetime
 }
 
-class Note{
-  user: User
-  scene: Scene
+entity Note{
+  idUser: int <FK>
+  idScene: int <FK>
   --
   note: int [0,5]
   created_at: datetime
   updated_at: datetime
 }
 
-class Favori {
-  user: User
-  scene: Scene
+entity Favori {
+  idUser: int <FK>
+  idScene: int <FK>
+  --
+    created_at: datetime
+    updated_at: datetime
 }
 
-User  --  Commentaire : commente
-
-Scene  --  Commentaire : concerne
-
-(User, Scene) .. Note
-
-(User, Scene) .. Favori
-
+User "1" --> "0..*" Scene
+(User,Scene)  -->  Commentaire
+(User,Scene)  --> Note
+User "1" --> "0..*" Favori
+Scene "1" --> "0..*" Favori
 
 @enduml

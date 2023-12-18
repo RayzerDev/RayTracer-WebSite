@@ -1,0 +1,14 @@
+size 1024 768
+
+output cmy.png
+
+camera 0 0 6 0 0 0 0 1 0 45
+
+directional 0 0 1 1 1 1
+
+diffuse 1 1 0
+sphere -1 1 0 1
+diffuse 0 1 1
+sphere 1 1 0 1
+diffuse 1 0 1
+sphere 0 -.7 0 1
