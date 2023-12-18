@@ -1,0 +1,51 @@
+@startuml
+
+
+class Scene {
+  - id_scene: int
+  - nom_scene: string
+  - description_scene: string
+  - lien_vignette_image: string
+  - lien_executable: string
+  - date_ajout: datetime
+  - description_scene: string
+  - lien_image: string
+  - equipe: int
+}
+
+class Utilisateur {
+  - id_user: int
+  - nom_user: string
+  - mail: string
+  - password: string
+  - admin: boolean
+  - avatar: string
+}
+
+class Commentaire {
+  - id_com: int
+  - titre: string
+  - corps_du_commentaire: string
+  - date_creation: datetime
+  - date_modif: datetime
+}
+
+class Note{
+   - valeur: int
+}
+
+class Favori {
+  - utilisateur: Utilisateur
+  - scenes: List<Scene>
+}
+
+Utilisateur "1" --> "0..*" Scene
+Utilisateur "1" --> "0..*" Commentaire
+Utilisateur "1" --> "1" Note
+Utilisateur "1" --> "0..*" Favori
+
+Scene "1" --> "0..*" Commentaire
+Scene "1" --> "0..*" Favori
+Scene "1" --> "0..*" Note
+
+@enduml
