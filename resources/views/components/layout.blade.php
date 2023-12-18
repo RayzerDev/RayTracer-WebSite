@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container py-4 px-3 mx-auto text-white">
-    <h1>Bienvenue sur la page d'accueil</h1>
+    {{$slot}}
 </div>
 </body>
 </html>
