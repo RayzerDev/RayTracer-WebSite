@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $this->flushImageScene();
         Schema::create('scenes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('userId');
