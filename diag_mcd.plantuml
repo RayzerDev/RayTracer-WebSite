@@ -1,0 +1,51 @@
+@startuml
+!define PRIMARY_KEY(x) entity x <<PK>> #LightGreen
+!define FOREIGN_KEY(x) entity x <<FK>> #LightBlue
+
+PRIMARY_KEY(Scene) {
+  nom_scene
+}
+
+entity Scene {
+  nom_scene VARCHAR(50)
+  description VARCHAR(50)
+  lien_vignette_image VARCHAR(100)
+  lien_executable VARCHAR(50)
+  date_ajout DATE
+  description_scene VARCHAR(200)
+  lien_image VARCHAR(100)
+  equipe INT
+}
+
+entity Utilisateur {
+  nom_user VARCHAR(50)
+  mail VARCHAR(50)
+  password VARCHAR(50)
+  admin LOGICAL
+  avatar VARCHAR(100)
+}
+
+entity Commentaire {
+  id INT
+  titre VARCHAR(50)
+  corps_du_commentaire VARCHAR(50)
+  date_creation DATE
+  date_modif DATE
+}
+
+PRIMARY_KEY(Favori) {
+  nom_scene
+  nom_user
+}
+
+entity Favori {
+  nom_scene VARCHAR(50)
+  nom_user VARCHAR(50)
+}
+
+Utilisateur --|{ Scene : nom_user
+Utilisateur --|{ Commentaire : nom_user
+Scene --|{ Favori : nom_scene
+Utilisateur --|{ Favori : nom_user
+
+@enduml
