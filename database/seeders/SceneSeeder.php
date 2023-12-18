@@ -13,6 +13,6 @@ class SceneSeeder extends Seeder
      */
     public function run(): void
     {
-        Scene::factory(3)->create();
+        Scene::factory(10)->create();
     }
 }
