@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Scene;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends Factory
  */
 class CommentaireFactory extends Factory
 {
@@ -17,9 +19,13 @@ class CommentaireFactory extends Factory
     public function definition(): array
 
     {
+        $usersId = User::all()->pluck('id');
+        $scenesId = Scene::all()->pluck('id');
         return [
+            'idUser' => fake()->randomElement($usersId),
+            'idScene' => fake()->randomElement($scenesId),
             'titre' => fake()->title,
-            'corp' => fake()->text
+            'corp' => fake()->paragraph,
         ];
     }
 }

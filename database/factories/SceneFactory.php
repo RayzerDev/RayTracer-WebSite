@@ -2,16 +2,15 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Scene>
+ * @extends Factory
  */
 class SceneFactory extends Factory
 {
-
-    protected int $index = 0;
     /**
      * Define the model's default state.
      *
@@ -19,21 +18,13 @@ class SceneFactory extends Factory
      */
     public function definition(): array
     {
-        $scenesFile = base_path('datas/listeScenes.dat');
-        $nomScene = file($scenesFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        $descriptionScene = file_get_contents(base_path('datas/' . $nomScene[$this->index]));
-        $this->index++;
-
+        $usersId = User::all()->pluck('id');
 
         return [
-            'nomScene' => $nomScene[$this->index-1],
-            'description' => fake()->text,
-            'lienVignetteImage' => fake()->url,
-            'lienExecutable' => fake()->url,
-            'dateAjout' => now(),
-            'descriptionScene' => $descriptionScene,
-            'lienImage' => fake()->url,
-            'equipe' => 13
+            'idUser' => $this->faker->randomElement($usersId),
+            'nom' => $this->faker->word(),
+            'equipe' => fake()->randomDigit(),
+            'description' => fake()->paragraph
         ];
     }
 }

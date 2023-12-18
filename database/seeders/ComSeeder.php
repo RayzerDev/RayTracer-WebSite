@@ -13,6 +13,6 @@ class ComSeeder extends Seeder
      */
     public function run(): void
     {
-        Commentaire::factory(30)->create();
+        Commentaire::factory(15)->create();
     }
 }

@@ -5,9 +5,6 @@
             <a class="nav-item nav-link text-white" href="/a-propos">A propos</a>
             <a class="nav-item nav-link text-white" href=""></a>
             <a class="nav-item nav-link text-white" href="/contact">Contact</a>
-            @auth
-                <a class="nav-item nav-link text-white" href="/home">Home</a>
-            @endauth
         </div>
     </div>
     <x-header></x-header>
