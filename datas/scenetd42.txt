@@ -1,0 +1,20 @@
+size 640 480
+output scenetd42.png
+camera 0 0 4 0 0 0 0 1 0 45
+
+shadow true
+
+directional 1 1 1 1 1 1
+
+ambient 0.3 0.3 0.3
+
+diffuse 0.7 0 0
+sphere 0.59 0.81 0 0.5
+sphere -0.95 -0.31 0 0.5
+
+diffuse 0.7 0.7 0
+sphere 0.95 -0.31 0 0.5
+sphere -0.59 0.81 0 0.5
+
+diffuse 0 0 0.7
+sphere 0 -1 0 0.5
