@@ -12,7 +12,8 @@
         <div class="col-md-8">
             <div class="card bg-white">
                 <div class="card-header d-flex align-items-center">
-                    <img id="image-preview" class="avatar rounded-circle" style="height: 50px; width: 50px;" alt="Image Preview" src="{{asset("storage/user/avatars/user.png")}}">
+                    <img id="image-preview" class="avatar rounded-circle" style="height: 50px; width: 50px;"
+                         alt="Image Preview" src="{{asset("storage/user/avatars/user.png")}}">
                     <h2 class="ms-3 mb-0">Inscription</h2>
                 </div>
 
@@ -21,29 +22,36 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nom</label>
-                            <input id="name" type="text" class="form-control bg-white shadow" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <label for="nom" class="form-label">Nom</label>
+                            <input id="nom" type="text" class="form-control bg-white shadow"
+                                   name="nom" value="{{ old('nom') }}" required autocomplete="nom" autofocus>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse e-mail</label>
-                            <input id="email" type="email" class="form-control bg-white shadow" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="email" class="form-control bg-white shadow"
+                                   name="email" value="{{ old('email') }}" required autocomplete="email">
                         </div>
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Mot de passe</label>
-                            <input id="exampleInputPassword1" type="password" class="form-control bg-white shadow" name="password" required autocomplete="new-password">
+                            <input id="exampleInputPassword1" type="password" class="form-control bg-white shadow"
+                                   name="password" required autocomplete="new-password">
                         </div>
 
                         <div class="mb-3">
                             <label for="password_confirmation" class="form-label">Confirmer le mot de passe</label>
-                            <input id="password_confirmation" type="password" class="form-control bg-white shadow" name="password_confirmation" autocomplete="new-password">
+                            <input id="password_confirmation" type="password" class="form-control bg-white shadow"
+                                   name="password_confirmation" autocomplete="new-password">
                         </div>
 
                         <div class="mb-3">
                             <label for="avatar" class="form-label">Avatar</label>
-                            <input id="avatar" type="file" class="form-control bg-white shadow" name="avatar" accept="image/*">
-                            <button type="button" class="btn btn-outline" onclick="cancelImageUpload()">Retirer le choix</button>
+                            <input id="avatar" type="file" class="form-control bg-white shadow"
+                                   name="avatar" accept="image/*">
+                            <button type="button" class="btn btn-outline" onclick="cancelImageUpload()">
+                                Retirer le choix
+                            </button>
                         </div>
 
                         <div class="mb-3">
