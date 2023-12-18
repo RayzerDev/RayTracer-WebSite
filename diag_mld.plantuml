@@ -2,20 +2,22 @@
 
 
 class Scene {
-  id_scene: int
-  nom_scene: string
-  description_scene: string
-  lien_vignette_image: string
-  lien_executable: string
-  date_ajout: datetime
-  description_scene: string
-  lien_image: string
+  idScene: int
+  --
+  nomScene: string
+  description: string
+  lienVignetteImage: string
+  lienExecutable: string
+  dateAjout: datetime
+  descriptionScene: string
+  lienImage: string
   equipe: int
 }
 
 class Utilisateur {
-  id_user: int
-  nom_user: string
+  idUser: int
+  --
+  nomUser: string
   mail: string
   password: string
   admin: boolean
@@ -23,20 +25,24 @@ class Utilisateur {
 }
 
 class Commentaire {
-  id_com: int
+  idCom: int
+  --
   titre: string
-  corps_du_commentaire: string
-  date_creation: datetime
-  date_modif: datetime
+  corpsDuCommentaire: string
+  dateCreation: datetime
+  dateModif: datetime
 }
 
 class Note{
-   valeur: int
+  idUser: int <FK>
+  idScene: int
+  --
+  note: int
 }
 
 class Favori {
-  utilisateur: Utilisateur
-  scenes: List<Scene>
+  idUser: int
+  idScene: int
 }
 
 Utilisateur "1" --> "0..*" Scene
