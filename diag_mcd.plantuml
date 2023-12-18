@@ -41,7 +41,7 @@ class Favori {
 Utilisateur  --  Commentaire : commente
 Utilisateur -- Scene : note
 
-Scene .. Favori
-Scene .. Note
+Note ..> Utilisateur : estDonneePar
+Favori ..> Utilisateur : ChoisiEnFavori
 
 @enduml
