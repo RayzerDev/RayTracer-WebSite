@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Http\File;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Scene>
@@ -11,8 +11,7 @@ use Illuminate\Http\File;
 class SceneFactory extends Factory
 {
 
-    protected $scene;
-
+    protected int $index = 0;
     /**
      * Define the model's default state.
      *
@@ -20,13 +19,14 @@ class SceneFactory extends Factory
      */
     public function definition(): array
     {
+        $scenesFile = base_path('datas/listeScenes.dat');
+        $nomScene = file($scenesFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $descriptionScene = file_get_contents(base_path('datas/' . $nomScene[$this->index]));
+        $this->index++;
 
-        $scenesFile = storage_path('../datas/listeScenes.dat');
-        $nomScene = file($scenesFile);
-        $descriptionScene = file('../datas/'.$nomScene.'.txt');
 
         return [
-            'nom' => fake()->$nomScene,
+            'nomScene' => $nomScene[$this->index-1],
             'description' => fake()->text,
             'lienVignetteImage' => fake()->url,
             'lienExecutable' => fake()->url,

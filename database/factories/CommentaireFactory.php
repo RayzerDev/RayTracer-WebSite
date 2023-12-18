@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class ComFactory extends Factory
+class CommentaireFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class ComFactory extends Factory
     public function definition(): array
     {
         return [
-            'titre' => fake()->titre,
+            'titre' => fake()->title,
             'corps' => fake()->text,
             'dateCreation' => now(),
             'dateModif' => now()
