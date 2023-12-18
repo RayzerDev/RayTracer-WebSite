@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('idScene');
             $table->foreign('idScene')->references('id')->on('scenes')->onDelete('cascade');
             $table->integer('note');
-            $table->primary(["userId", "sceneId"]);
             $table->timestamps();
         });
     }
