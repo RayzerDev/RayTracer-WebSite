@@ -1,5 +1,5 @@
 # SAE1.01 SITE WEB LARAVEL
-Ce projet concerne la suite de notre projet lié au *RayTracer*. C'est un site web qui permet à l'utilisateur
+Ce projet concerne la suite de notre projet lié au *RayTracer*. C'est un site web qui permet à l'utilisateur de générer des images liées au RayTracer.
 
 ## Technologies
 - PhpStorm
