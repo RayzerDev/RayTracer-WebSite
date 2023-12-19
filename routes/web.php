@@ -28,4 +28,4 @@ Route::view('contact', 'contact');
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
-Route::get('/scenes', [SceneController::class, 'index'])->name('scenes.index');
+Route::resource("/scenes", SceneController::class);
