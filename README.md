@@ -40,16 +40,19 @@ touch database/database.sqlite
 
 7. Lancer les migrations
 ``` bash
-php artisan migrate
+php artisan migrate:fresh
 ```
-8. Build le css
+
+8. Lancer les Seeders
+``` bash
+php artisan db:seed
+```
+9. Build le css
 ``` bash
 npm run build
 ```
 
-9. Démarrer le serveur
+10. Démarrer le serveur
 ``` bash
 php artisan serve
 ```
-
-  
