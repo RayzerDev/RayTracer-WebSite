@@ -26,4 +26,8 @@ class Scene extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function noteUser($idUser)
+    {
+        return $this->notes()->with('idUser',$idUser);
+    }
 }
