@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Scene;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Parsedown;
@@ -16,8 +17,20 @@ class SceneController extends Controller
         $cat = $request->input('cat', null);
         $value = $request->cookie('cat', null);
         $recent = $request->input('recent');
+        $topRated = $request->input('top_rated');
 
-        if ($recent){
+        if ($topRated){
+            $scenes = DB::table('scenes')
+                ->leftJoin('notes', 'scenes.id', '=', 'notes.idScene')
+                ->select('scenes.*', DB::raw('AVG(notes.note) as average_rating'))
+                ->groupBy('scenes.id')
+                ->orderByDesc('average_rating')
+                ->take(5)
+                ->get();
+
+            $cat = 'All';
+        }
+        else if ($recent){
             $scenes = Scene::latest()->take(5)->get();
             $cat = 'All';
         } else {
