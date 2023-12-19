@@ -15,21 +15,24 @@ class NoteController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Scene $scene)
     {
-        $user = Auth::user();
-        $sceneId = $request->input('idScene');
-        $note = $request->input('note');
-        $currentNote = $user->notes()->where('idScene', $sceneId)->first();
+        $noteValue = $request->input('note');
 
-        if ($user->notes()->where('idScene', $sceneId)->exists()) {
-            $currentNote->note = $note;
-        } else {
-            $currentNote = Note::create(['idUser' => $user->id, 'idScene' => $sceneId, 'note' => $note]);
-        }
-        $currentNote->save();
+        $note = Note::create(['idUser' => Auth::user()->id, 'idScene' => $scene->id, 'note' => $noteValue]);
+
+        $note->save();
+
         return back();
     }
 
+    public function update(Request $request, Scene $scene)
+    {
+        $noteValue = $request->input('note');
+        $note = $scene->notes()->where('idUser', Auth::user()->id)->first();
+        $note->note = $noteValue;
 
+        $note->save();
+        return back();
+    }
 }
