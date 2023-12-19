@@ -9,17 +9,29 @@
             </div>
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom</label>
-                <input type="text" class="form-control bg-white" id="nom" name="nom" required>
+                <input type="text" class="form-control bg-white
+                @error('nom') is-invalid @enderror" id="nom" name="nom" required>
+                @error('nom')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label">Adresse Email</label>
-                <input type="email" class="form-control bg-white" id="email" name="email" required>
+                <input type="email" class="form-control bg-white @error('email')
+                is-invalid @enderror" id="email" name="email" required>
+                @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
-                <textarea class="form-control bg-white" id="message" name="message" rows="5" required></textarea>
+                <textarea class="form-control bg-white @error('message') is-invalid @enderror
+                " id="message" name="message" rows="5" required></textarea>
+                @error('message')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary mb-3">Envoyer</button>
