@@ -32,10 +32,9 @@ class NoteController extends Controller
         if ($user->notes()->where('idScene', $sceneId)->exists()) {
             $currentNote->note = $note;
         } else {
-            Note::create(['idUser' => $user->id, 'idScene' => $sceneId, 'note' => $note]);
+            $currentNote = Note::create(['idUser' => $user->id, 'idScene' => $sceneId, 'note' => $note]);
         }
         $currentNote->save();
-
         return back();
     }
 

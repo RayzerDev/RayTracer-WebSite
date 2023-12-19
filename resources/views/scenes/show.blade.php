@@ -21,7 +21,7 @@
                 <button type="submit">Enregistrer</button>
             </form>
 
-            @if ($scene->notes()->count() > 0)
+            @if (App\Models\Note::where('idUser', Auth::user()->id)->count() > 0)
                 <h3>Votre note:</h3>
                 <p>Vous avez donné une note de {{ App\Models\Note::where('idUser', Auth::user()->id)->first()->note }}.</p>
 

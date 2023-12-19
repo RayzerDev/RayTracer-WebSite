@@ -8,6 +8,7 @@ use App\Models\Scene;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Parsedown;
@@ -18,22 +19,41 @@ class SceneController extends Controller
         Log::info('Hello from index');
         $cat = $request->input('cat', null);
         $value = $request->cookie('cat', null);
-        if (!isset($cat)) {
-            if (!isset($value)) {
-                $scenes = Scene::all();
-                $cat = 'All';
-                Cookie::expire('cat');
-            } else {
-                $scenes = Scene::where('equipe', $value)->get();
-                $cat = $value;
-                Cookie::queue('cat', $cat, 10);            }
+        $recent = $request->input('recent');
+        $topRated = $request->input('top_rated');
+
+        if ($topRated){
+            $scenes = DB::table('scenes')
+                ->leftJoin('notes', 'scenes.id', '=', 'notes.idScene')
+                ->select('scenes.*', DB::raw('AVG(notes.note) as average_rating'))
+                ->groupBy('scenes.id')
+                ->orderByDesc('average_rating')
+                ->take(5)
+                ->get();
+
+            $cat = 'All';
+        }
+        else if ($recent){
+            $scenes = Scene::latest()->take(5)->get();
+            $cat = 'All';
         } else {
-            if ($cat == 'All') {
-                $scenes = Scene::all();
-                Cookie::expire('cat');
+            if (!isset($cat)) {
+                if (!isset($value)) {
+                    $scenes = Scene::all();
+                    $cat = 'All';
+                    Cookie::expire('cat');
+                } else {
+                    $scenes = Scene::where('equipe', $value)->get();
+                    $cat = $value;
+                    Cookie::queue('cat', $cat, 10);            }
             } else {
-                $scenes = Scene::where('equipe', $cat)->get();
-                Cookie::queue('cat', $cat, 10);
+                if ($cat == 'All') {
+                    $scenes = Scene::all();
+                    Cookie::expire('cat');
+                } else {
+                    $scenes = Scene::where('equipe', $cat)->get();
+                    Cookie::queue('cat', $cat, 10);
+                }
             }
         }
         $equipes = Scene::distinct('equipe')->pluck('equipe');
@@ -102,4 +122,5 @@ class SceneController extends Controller
     public function upload(Request $request, $id) {
         //
     }
+
 }

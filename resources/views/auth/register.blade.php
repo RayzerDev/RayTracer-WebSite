@@ -1,4 +1,4 @@
-<x-layout titre="S'enregistrer">
+<x-layout titre="Inscription">
     <div class="row justify-content-center">
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -10,7 +10,7 @@
             </div>
         @endif
         <div class="col-md-8">
-            <div class="card bg-white">
+            <div class="card bg-secondary text-white rounded-2">
                 <div class="card-header d-flex align-items-center">
                     <img id="image-preview" class="avatar rounded-circle" style="height: 50px; width: 50px;"
                          alt="Image Preview" src="{{asset("storage/user/avatars/user.png")}}">
@@ -22,34 +22,52 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label for="nom" class="form-label">Nom</label>
-                            <input id="nom" type="text" class="form-control bg-white shadow"
-                                   name="nom" value="{{ old('nom') }}" required autocomplete="nom" autofocus>
+                            <label for="nom" class="form-label">Nom ou Pseudo</label>
+                            <input id="nom" type="text" class="form-control bg-white shadow
+                             @error('nom') is-invalid @enderror"
+                                   name="nom" value="{{ old('nom') }}" required autocomplete="nom" autofocus
+                                   placeholder="Duchmol">
+                            @error('nom')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse e-mail</label>
-                            <input id="email" type="email" class="form-control bg-white shadow"
-                                   name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="email" class="form-control bg-white shadow
+                             @error('email') is-invalid @enderror"
+                                   name="email" value="{{ old('email') }}" required autocomplete="email"
+                                   placeholder="robertduchmol@email.fr">
+                            @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Mot de passe</label>
-                            <input id="exampleInputPassword1" type="password" class="form-control bg-white shadow"
+                            <input id="exampleInputPassword1" type="password" class="form-control bg-white shadow
+                             @error('password') is-invalid @enderror"
                                    name="password" required autocomplete="new-password">
+                            @error('password')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="password_confirmation" class="form-label">Confirmer le mot de passe</label>
-                            <input id="password_confirmation" type="password" class="form-control bg-white shadow"
+                            <input id="password_confirmation" type="password" class="form-control bg-white shadow
+                             @error('password_confirmation') is-invalid @enderror"
                                    name="password_confirmation" autocomplete="new-password">
+                            @error('password_confirmations')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="avatar" class="form-label">Avatar</label>
                             <input id="avatar" type="file" class="form-control bg-white shadow"
                                    name="avatar" accept="image/*">
-                            <button type="button" class="btn btn-outline" onclick="cancelImageUpload()">
+                            <button type="button" class="btn btn-outline text-white" onclick="cancelImageUpload()">
                                 Retirer le choix
                             </button>
                         </div>

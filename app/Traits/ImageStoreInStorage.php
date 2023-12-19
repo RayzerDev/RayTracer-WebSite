@@ -28,7 +28,7 @@ trait ImageStoreInStorage
 
         foreach ($files as $file){
             if ($file != 'scene/images/noimg.png'){
-                Storage::delete($file);
+                Storage::disk('public')->delete($file);
             }
         }
     }
@@ -39,7 +39,7 @@ trait ImageStoreInStorage
 
         foreach ($files as $file){
             if ($file != 'user/avatars/user.png'){
-                Storage::delete($file);
+                Storage::disk('public')->delete($file);
             }
         }
     }
