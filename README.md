@@ -56,3 +56,9 @@ npm run build
 ``` bash
 php artisan serve
 ```
+## Connexion
+2 comptes sont à votre disposition :
+- normaluser@test.fr
+- adminuser@test.fr
+
+**Tous les comptes créés avec le Seeder ont comme mot de passe `password`**
