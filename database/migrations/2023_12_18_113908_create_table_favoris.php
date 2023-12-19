@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('favoris', function (Blueprint $table) {
-            $table->integer('idUser');
-            $table->integer('idScene');
+            $table->unsignedBigInteger('idUser');
+            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('idScene');
+            $table->foreign('idScene')->references('id')->on('scenes')->onDelete('cascade');
             $table->timestamps();
         });
     }

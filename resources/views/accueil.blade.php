@@ -1,5 +1,4 @@
 <x-layout titre="Accueil">
-    <div class="container d-flex align-items-center justify-content-center vh-100">
-        <h1 class="text-center">Bienvenue sur notre projet RayTracer</h1>
-    </div>
+    <h1 class="text-center mb-5">Bienvenue sur notre projet RayTracer</h1>
+    <img src="{{asset('img/raytracer.png')}}" alt="raytracer" class="rounded mx-auto d-block">
 </x-layout>

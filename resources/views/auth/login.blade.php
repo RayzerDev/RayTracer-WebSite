@@ -21,12 +21,14 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Adresse e-mail</label>
-                            <input id="email" type="email" class="form-control bg-white shadow" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" class="form-control bg-white shadow"
+                                   name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         </div>
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Mot de passe</label>
-                            <input id="password" type="password" class="form-control bg-white shadow" name="password" required autocomplete="current-password">
+                            <input id="password" type="password" class="form-control bg-white shadow"
+                                   name="password" required autocomplete="current-password">
                         </div>
 
                         <div class="mb-3 form-check">
