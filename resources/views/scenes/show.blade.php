@@ -9,7 +9,6 @@
             <p><strong>La date d'ajout :</strong> {{ $scene['created_at'] }}</p>
             <p><strong>l'équipe :</strong> {{ $scene['equipe'] }}</p>
             <p><strong>la description de la scene :</strong> {!! $parseDown->parse($scene['description']) !!}</p>
-            {{ 'storage/'.$scene['image'] }}
             <img src="{{ asset('storage/'.$scene['image']) }}" alt="Image de la scène">
         </div>
     @endauth
