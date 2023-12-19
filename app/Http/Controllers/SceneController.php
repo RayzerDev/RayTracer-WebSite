@@ -78,28 +78,23 @@ class SceneController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, $id)
+    public function show(Scene $scene)
     {
         $parseDown = new ParseDown();
-        $scene = Scene::find($id);
-
-        $commentaires = Commentaire::where('idScene', $scene['id'])->orderby('created_at', 'desc')->get();
-        $titre = $request->get('action', 'show') == 'show' ? "Détails d'une scene" : "Suppression d'une scene";
-        $maxNote = DB::table('notes')->where('idScene', $id)->max('note');
+        $maxNote = $scene->notes()->max('note');
 
         // Requête pour obtenir la note minimale
-        $minNote = DB::table('notes')->where('idScene', $id)->min('note');
+        $minNote = $scene->notes()->min('note');
 
-        $moyNote = DB::table('notes')->where('idScene', $id)->avg('note');
+        $moyNote = $scene->notes()->avg('note');
 
-        $nbNotes = DB::table('notes')->where('idScene', $id)->count();
+        $nbNotes = $scene->notes()->count();
 
-        $nbFav = DB::table('favoris')->where('idScene', $id)->count();
+        $nbFav = $scene->notes()->count();
 
-        return view('scenes.show', ['titre' => $titre, 'scene' => $scene, 'action' => $request->get('action', 'show'), 'parseDown' => $parseDown, 'commentaires' => $commentaires, 'maxNote' => $maxNote, 'minNote' => $minNote, 'nbNotes' => $nbNotes, 'nbFav' => $nbFav, 'moyNote' => $moyNote]);
+        return view('scenes.show', ['titre' => "Détails", 'scene' => $scene, 'parseDown' => $parseDown,
+            'maxNote' => $maxNote, 'minNote' => $minNote, 'nbNotes' => $nbNotes, 'nbFav' => $nbFav, 'moyNote' => $moyNote]);
 
-        //$sport = Sport::find($id);
-        // return view('sports.show', ['tache' => $tache,'titre'=>"Détails d'une tâche", 'action'=>"Editer"]);
     }
 
 
