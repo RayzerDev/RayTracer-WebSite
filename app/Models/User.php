@@ -63,4 +63,8 @@ class User extends Authenticatable
         return $this->hasMany(Note::class, 'idUser');
     }
 
+    public function isFavorite($idScene): bool
+    {
+        return $this->favoris()->where('$idScene', $idScene)->exists();
+    }
 }
