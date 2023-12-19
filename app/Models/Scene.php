@@ -22,12 +22,12 @@ class Scene extends Model
     {
         return $this->hasMany(Note::class, 'idScene');
     }
-    protected function user(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'idUser');
     }
     public function noteUser($idUser)
     {
-        return $this->notes()->with('idUser',$idUser);
+        return $this->notes()->where('idUser',$idUser)->first();
     }
 }
