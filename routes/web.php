@@ -1,5 +1,6 @@
 <?php
 
+use App\Actions\Fortify\UpdateUserAvatar;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,6 @@ Route::view('contact', 'contact');
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
+
+Route::put('/update-avatar', [UpdateUserAvatar::class, 'update'])->name('user.update-avatar');
+
