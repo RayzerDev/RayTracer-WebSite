@@ -10,6 +10,8 @@ class Note extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['idUser', 'idScene', 'note'];
+
     protected function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

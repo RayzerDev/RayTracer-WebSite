@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commentaire;
+use App\Models\Favori;
 use App\Models\Scene;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -58,10 +61,14 @@ class SceneController extends Controller
     public function show(Request $request, $id)
     {
         $parseDown = new ParseDown();
+        $userId = Auth::user()->id;
         $scene = Scene::find($id);
-        $commentaires = \App\Models\Commentaire::where('idScene', $scene['id'])->orderby('created_at', 'desc')->get();
+        $isFavorite = Favori::where('idUser', $userId)
+            ->where('idScene', $scene->id)
+            ->exists();
+        $commentaires = Commentaire::where('idScene', $scene['id'])->orderby('created_at', 'desc')->get();
         $titre = $request->get('action', 'show') == 'show' ? "Détails d'une scene" : "Suppression d'une scene";
-        return view('scenes.show', ['titre' => $titre, 'scene' => $scene, 'action' => $request->get('action', 'show'), 'parseDown' => $parseDown, 'commentaires' => $commentaires]);
+        return view('scenes.show', ['titre' => $titre, 'scene' => $scene, 'action' => $request->get('action', 'show'), 'parseDown' => $parseDown, 'commentaires' => $commentaires, 'isFavorite' => $isFavorite]);
 
         //$sport = Sport::find($id);
         // return view('sports.show', ['tache' => $tache,'titre'=>"Détails d'une tâche", 'action'=>"Editer"]);

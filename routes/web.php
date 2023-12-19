@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FavoriController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\SceneController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +30,6 @@ Route::view('contact', 'contact');
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 
+Route::resource('notes', NoteController::class);
 Route::resource("/scenes", SceneController::class);
+Route::put('/favoris/{scene}', [FavoriController::class, 'toggle'])->name('favoris.toggle');

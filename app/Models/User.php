@@ -48,9 +48,9 @@ class User extends Authenticatable
         return $this->hasMany(Scene::class, "idUser");
     }
 
-    protected function favoris(): BelongsToMany
+    public function favoris(): BelongsToMany
     {
-        return $this->belongsToMany(Scene::class, 'favori', "idUser");
+        return $this->belongsToMany(Scene::class, 'favoris', 'idUser', 'idScene');
     }
 
     protected function commentaires(): HasMany
@@ -58,9 +58,9 @@ class User extends Authenticatable
         return $this->hasMany(Commentaire::class, "idUser");
     }
 
-    protected function notes(): HasMany
+    public function notes()
     {
-        return $this->hasMany(Note::class, "idUser");
+        return $this->hasMany(Note::class, 'idUser');
     }
 
 }
