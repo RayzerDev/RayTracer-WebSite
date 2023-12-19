@@ -59,8 +59,9 @@ class SceneController extends Controller
     {
         $parseDown = new ParseDown();
         $scene = Scene::find($id);
+        $commentaires = \App\Models\Commentaire::where('idScene', $scene['id'])->orderby('created_at', 'desc')->get();
         $titre = $request->get('action', 'show') == 'show' ? "Détails d'une scene" : "Suppression d'une scene";
-        return view('scenes.show', ['titre' => $titre, 'scene' => $scene, 'action' => $request->get('action', 'show'), 'parseDown' => $parseDown]);
+        return view('scenes.show', ['titre' => $titre, 'scene' => $scene, 'action' => $request->get('action', 'show'), 'parseDown' => $parseDown, 'commentaires' => $commentaires]);
 
         //$sport = Sport::find($id);
         // return view('sports.show', ['tache' => $tache,'titre'=>"Détails d'une tâche", 'action'=>"Editer"]);
