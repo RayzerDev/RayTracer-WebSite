@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     protected function favoris(): BelongsToMany
     {
-        return $this->belongsToMany(Scene::class, 'favori', "idUser");
+        return $this->belongsToMany(Scene::class, 'favoris', "idUser", "idScene");
     }
 
     protected function commentaires(): HasMany
