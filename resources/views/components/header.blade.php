@@ -4,13 +4,16 @@
 
 @endguest
 @auth
-    <a href="{{ route('home') }}" class="nav-item nav-link text-white d-sm-block">Bienvenue {{Auth::user()->nom}}</a>
-    <a href="#" id="logout" class="nav-item nav-link text-white mx-5 d-sm-block">Logout</a>
+    <a href="{{route('home')}}">
+        <img src="{{asset('storage/user/avatars/user.png')}}" id="avatar-nav-bar">
+    </a>
+    <a href="#" id="logout" class="text-decoration-none text-white mx-5">Se déconnecter</a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
     </form>
     <script>document.getElementById('logout').addEventListener("click", (event) => {
-        document.getElementById('logout-form').submit();});
+            document.getElementById('logout-form').submit();
+        });
     </script>
 @endauth
 

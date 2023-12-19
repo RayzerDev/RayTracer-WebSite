@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Commentaire;
-use App\Models\Favori;
 use App\Models\Scene;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -88,7 +85,18 @@ class SceneController extends Controller
             ->exists();
         $commentaires = Commentaire::where('idScene', $scene['id'])->orderby('created_at', 'desc')->get();
         $titre = $request->get('action', 'show') == 'show' ? "Détails d'une scene" : "Suppression d'une scene";
-        return view('scenes.show', ['titre' => $titre, 'scene' => $scene, 'action' => $request->get('action', 'show'), 'parseDown' => $parseDown, 'commentaires' => $commentaires, 'isFavorite' => $isFavorite]);
+        $maxNote = DB::table('notes')->where('idScene', $id)->max('note');
+
+        // Requête pour obtenir la note minimale
+        $minNote = DB::table('notes')->where('idScene', $id)->min('note');
+
+        $moyNote = DB::table('notes')->where('idScene', $id)->avg('note');
+
+        $nbNotes = DB::table('notes')->where('idScene', $id)->count();
+
+        $nbFav = DB::table('favoris')->where('idScene', $id)->count();
+
+        return view('scenes.show', ['titre' => $titre, 'scene' => $scene, 'action' => $request->get('action', 'show'), 'parseDown' => $parseDown, 'commentaires' => $commentaires, 'isFavorite' => $isFavorite, 'maxNote' => $maxNote, 'minNote' => $minNote, 'nbNotes' => $nbNotes, 'nbFav' => $nbFav, 'moyNote' => $moyNote]);
 
         //$sport = Sport::find($id);
         // return view('sports.show', ['tache' => $tache,'titre'=>"Détails d'une tâche", 'action'=>"Editer"]);
