@@ -20,5 +20,9 @@
             Cette étape nous aidera à créer efficacement des données
             de test.
         </p>
+        <div class="text-center">
+            <img src="{{asset('img/raytracerapropos.png')}}" alt="raytracer" class="w-25 rounded-2">
+        </div>
     </section>
 </x-layout>
+<x-footer></x-footer>
