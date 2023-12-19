@@ -27,7 +27,6 @@ class SceneController extends Controller
                 ->orderByDesc('average_rating')
                 ->take(5)
                 ->get();
-
             $cat = 'All';
         }
         else if ($recent){
@@ -80,7 +79,18 @@ class SceneController extends Controller
         $parseDown = new ParseDown();
         $scene = Scene::find($id);
         $titre = $request->get('action', 'show') == 'show' ? "Détails d'une scene" : "Suppression d'une scene";
-        return view('scenes.show', ['titre' => $titre, 'scene' => $scene, 'action' => $request->get('action', 'show'), 'parseDown' => $parseDown]);
+        $maxNote = DB::table('notes')->where('idScene', $id)->max('note');
+
+        // Requête pour obtenir la note minimale
+        $minNote = DB::table('notes')->where('idScene', $id)->min('note');
+
+        $moyNote = DB::table('notes')->where('idScene', $id)->avg('note');
+
+        $nbNotes = DB::table('notes')->where('idScene', $id)->count();
+
+        $nbFav = DB::table('favoris')->where('idScene', $id)->count();
+
+        return view('scenes.show', ['titre' => $titre, 'scene' => $scene, 'action' => $request->get('action', 'show'), 'parseDown' => $parseDown, 'maxNote' => $maxNote, 'minNote' => $minNote, 'nbNotes' => $nbNotes, 'nbFav' => $nbFav, 'moyNote' => $moyNote]);
 
         //$sport = Sport::find($id);
         // return view('sports.show', ['tache' => $tache,'titre'=>"Détails d'une tâche", 'action'=>"Editer"]);
