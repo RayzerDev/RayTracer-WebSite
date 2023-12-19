@@ -17,7 +17,7 @@ trait ImageStoreInStorage
 
         $uniqueName = uniqid() . "." . $fileExtension;
         $destinationPath = "scene/images/" . $uniqueName;
-        Storage::put($destinationPath, $content);
+        Storage::disk('public')->put($destinationPath, $content);
 
         return $destinationPath;
     }
