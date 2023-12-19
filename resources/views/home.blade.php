@@ -96,11 +96,31 @@
         <div class="row" id="section-commentaires">
             <div class="col-md-12">
                 <h2>Vos commentaires:</h2>
+                <div class="row">
                 @forelse(Auth::user()->commentaires as $commentaire)
-                    <p>{{ $commentaire->titre }}</p>
+                        <div class="d-flex flex-start mt-4">
+                            <img class="rounded-circle shadow-1-strong me-3"
+                                 src="{{asset("storage/" . $commentaire->user->avatar)}}" alt="avatar" width="65"
+                                 height="65" />
+                            <div class="flex-grow-1 flex-shrink-1">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1">
+                                            {{$commentaire->user->nom}} <span class="small">- {{$commentaire->titre}} </span>
+                                        </p>
+                                        <a href="{{route('scenes.show', $commentaire->scene->id)}}"><i class="fas fa-reply fa-xs"></i><span class="small">Voir la scène</span></a>
+                                    </div>
+                                    <p class="small mb-0">
+                                        {{$commentaire->corp}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
                 @empty
                     <p>Aucun commentaire trouvé.</p>
                 @endforelse
+                </div>
             </div>
         </div>
 
