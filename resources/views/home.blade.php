@@ -133,7 +133,7 @@
 
                     <div class="mb-3">
                         <label for="avatar" class="form-label">Choisir un nouvel avatar:</label>
-                        <input type="file" class="form-control" id="avatar" name="avatar">
+                        <input class="bg-secondary" type="file" class="form-control" id="avatar" name="avatar">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Mettre à jour l'avatar</button>
