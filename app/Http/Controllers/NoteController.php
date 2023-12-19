@@ -22,13 +22,6 @@ class NoteController extends Controller
         $note = $request->input('note');
         $currentNote = $user->notes()->where('idScene', $sceneId)->first();
 
-        $this->validate(
-            $request,
-            [
-                'note' => 'required',
-            ]
-        );
-
         if ($user->notes()->where('idScene', $sceneId)->exists()) {
             $currentNote->note = $note;
         } else {
