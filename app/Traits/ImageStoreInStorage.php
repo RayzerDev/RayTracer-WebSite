@@ -8,7 +8,7 @@ trait ImageStoreInStorage
 {
     public function saveImageScene($file)
     {
-        $nom = date('YmdHis') . "." . $file->extension();
+        $nom = uniqid() . "." . $file->extension();
         return $file->storeAs("scene/images",$nom,'public');
     }
 
@@ -16,10 +16,8 @@ trait ImageStoreInStorage
     {
 
         $uniqueName = uniqid() . "." . $fileExtension;
-
         $destinationPath = "scene/images/" . $uniqueName;
-
-        Storage::put($destinationPath, $content);
+        Storage::disk('public')->put($destinationPath, $content);
 
         return $destinationPath;
     }
@@ -48,8 +46,8 @@ trait ImageStoreInStorage
 
     public function saveAvatar($file)
     {
-        $nom = date('YmdHis') . "." . $file->extension();
-        return $file->storeAs("scene/avatars",$nom,'public');
+        $nom = uniqid() . "." . $file->extension();
+        return $file->storeAs("user/avatars",$nom,'public');
     }
 
 
