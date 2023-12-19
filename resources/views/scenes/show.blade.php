@@ -8,10 +8,9 @@
                 @csrf
                 @method('PUT')
 
-                <input type="checkbox" name="favori" {{ $isFavorite ? 'checked' : '' }}>
-                <label for="favoriCheckbox">Favori</label>
-
-                <button type="submit">Enregistrer</button>
+                <button type="submit" class="btn {{ Auth::user()->isFavorite($scene->id) ? 'btn-danger' : 'btn-primary' }}">
+                    {{ Auth::user()->isFavorite($scene->id) ? 'Retirer des favoris' : 'Ajouter aux favoris' }}
+                </button>
             </form>
 
             <form action="{{ route('notes.store') }}" method="post" class="text-center mt-5">
@@ -29,7 +28,7 @@
                 <p class="text-center fst-italic">Vous n'avez pas encore noté cette scene.</p>
             @endif
 
-            <p><strong>la description de la scene:</strong><pre><code>{!! $scene->format !!}</code></pre></p>
+            <p><strong>le format de la scene:</strong><pre><code>{!! $scene->format !!}</code></pre></p>
             <p><strong>La date d'ajout :</strong> {{ $scene['created_at'] }}</p>
             <p><strong>L'équipe :</strong> {{ $scene['equipe'] }}</p>
             <p><strong>La description de la scene :</strong> {!! $parseDown->parse($scene['description']) !!}</p>
@@ -53,15 +52,33 @@
                     {{ $nbFav }}
                 </x-slot>
             </x-stats>
-            <p>l'image de la scène :<img src="{{ asset('storage/'.$scene['image']) }}" alt="Image de la scène"></p>
-            <p><strong>la note moyenne de la scène :</strong> {{ \App\Models\Note::where('idScene', $scene['id'])->avg('note') }}</p>
-            <p class="text-center"><strong>Les commentaires :</strong> </p>
-            @foreach($commentaires as $comment)
-                <div>
-                    <p class="p-2">Le titre :{{$comment['titre']}}</p>
-                    {{ $comment['corp'] }}
+            <div class="col-md-12">
+                <h2>Les commentaires:</h2>
+                <div class="row">
+                    @forelse($scene->commentaires as $commentaire)
+                        <div class="d-flex flex-start mt-4">
+                            <img class="rounded-circle shadow-1-strong me-3"
+                                 src="{{asset("storage/" . $commentaire->user->avatar)}}" alt="avatar" width="65"
+                                 height="65" />
+                            <div class="flex-grow-1 flex-shrink-1">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1">
+                                            {{$commentaire->user->nom}} <span class="small">- {{$commentaire->titre}} </span>
+                                        </p>
+                                    </div>
+                                    <p class="small mb-0">
+                                        {{$commentaire->corp}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    @empty
+                        <p>Aucun commentaire.</p>
+                    @endforelse
                 </div>
-            @endforeach
+            </div>
         </div>
     @endauth
     @guest
@@ -95,23 +112,33 @@
                     </x-slot>
                 </x-stats>
             </div>
-                <p><strong>Le nom de la scene :</strong> {{ $scene['nom'] }}</p>
-                <p><strong>la description :</strong>{{ $scene['description'] }}</p>
-                <p><strong>La date d'ajout :</strong> {{ $scene['created_at'] }}</p>
-                <p><strong>l'équipe :</strong> {{ $scene['equipe'] }}</p>
-                <p><strong>la description de la scene :</strong> {!! $parseDown->parse($scene['description']) !!}</p>
-                <p>l'image de la scène :<img src="{{ asset('storage/'.$scene['image']) }}" alt="Image de la scène" class="w-25"></p>
-                <p>l'image de la vignette :<img src="{{ asset('storage/'.$scene['vignetteImage']) }}" alt="Vignette de la scène" class="w-25"></p>
                 <p><strong>la note moyenne de la scène :</strong> {{ \App\Models\Note::where('idScene', $scene['id'])->avg('note') }}</p>
-            <div class="container">
-                <p class="text-center"><strong>Les commentaires :</strong> </p>
-                @foreach($commentaires as $comment)
-                    <div>
-                        <p class="p-3">Le titre :{{$comment['titre']}}</p>
-                        {{ $comment['corp'] }}
-                    </div>
-                @endforeach
-            </div>
+            <div class="col-md-12">
+                <h2>Les commentaires:</h2>
+                <div class="row">
+                    @forelse($scene->commentaires as $commentaire)
+                        <div class="d-flex flex-start mt-4">
+                            <img class="rounded-circle shadow-1-strong me-3"
+                                 src="{{asset("storage/" . $commentaire->user->avatar)}}" alt="avatar" width="65"
+                                 height="65" />
+                            <div class="flex-grow-1 flex-shrink-1">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-1">
+                                            {{$commentaire->user->nom}} <span class="small">- {{$commentaire->titre}} </span>
+                                        </p>
+                                    </div>
+                                    <p class="small mb-0">
+                                        {{$commentaire->corp}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    @empty
+                        <p>Aucun commentaire.</p>
+                    @endforelse
+                </div>
             </div>
     @endguest
 </x-layout>
