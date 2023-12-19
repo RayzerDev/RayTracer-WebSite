@@ -12,11 +12,11 @@ class Commentaire extends Model
 
     protected function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, "idUser");
     }
 
     protected function scene(): BelongsTo
     {
-        return $this->belongsTo(Scene::class);
+        return $this->belongsTo(Scene::class, "idScene");
     }
 }

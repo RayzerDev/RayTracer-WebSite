@@ -1,8 +1,7 @@
 @startuml
 
-
 entity Scene {
-  id: int
+  + id: int
   --
   idUser: int <FK>
   nom: string
@@ -17,22 +16,22 @@ entity Scene {
 }
 
 entity User {
-  id: int
+  + id: int
   --
   nom: string
   email: string
   password: string
   admin: boolean
   avatar: string
-created_at: datetime
-updated_at: datetime
+  created_at: datetime
+  updated_at: datetime
 }
 
 entity Commentaire {
-  id: int
+  + id: int
   --
-    idUser: int <FK>
-    idScene: int <FK>
+  idUser: int <FK>
+  idScene: int <FK>
   titre: string
   corp: string
   created_at: datetime
@@ -40,8 +39,8 @@ entity Commentaire {
 }
 
 entity Note{
-  idUser: int <FK>
-  idScene: int <FK>
+  + idUser: int <FK>
+  + idScene: int <FK>
   --
   note: int [0,5]
   created_at: datetime
@@ -49,16 +48,16 @@ entity Note{
 }
 
 entity Favori {
-  idUser: int <FK>
-  idScene: int <FK>
+  + idUser: int <FK>
+  + idScene: int <FK>
   --
-    created_at: datetime
-    updated_at: datetime
+  created_at: datetime
+  updated_at: datetime
 }
 
 User "1" --> "0..*" Scene
-(User,Scene)  -->  Commentaire
-(User,Scene)  --> Note
+(User,Scene) --> Commentaire
+(User,Scene) --> Note
 User "1" --> "0..*" Favori
 Scene "1" --> "0..*" Favori
 

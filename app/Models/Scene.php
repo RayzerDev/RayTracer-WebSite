@@ -11,17 +11,23 @@ class Scene extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+
     protected function commentaires(): HasMany
     {
         return $this->hasMany(Commentaire::class, "idScene");
     }
 
-    protected function notes(): HasMany
+    public function notes(): HasMany
     {
-        return $this->hasMany(Note::class, "idScene");
+        return $this->hasMany(Note::class, 'idScene');
     }
-    protected function user(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'idUser');
+    }
+    public function noteUser($idUser)
+    {
+        return $this->notes()->where('idUser',$idUser)->first();
     }
 }

@@ -22,8 +22,8 @@ class User {
   password: string
   admin: boolean
   avatar: string
-created_at: datetime
-updated_at: datetime
+  created_at: datetime
+  updated_at: datetime
 }
 
 class Commentaire {
@@ -52,12 +52,14 @@ class Favori {
 }
 
 User  --  Commentaire : commente
-
 Scene  --  Commentaire : concerne
 
-(User, Scene) .. Note
+User "*" -- "*" Scene : Possède
 
-(User, Scene) .. Favori
+User "*" -- "*" Scene : Possède
+Note -- User : Donne une note à
+Note -- Scene : Concerne
 
+(User, Scene) . Favori
 
 @enduml
