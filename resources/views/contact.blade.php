@@ -1,6 +1,6 @@
 <x-layout titre="Contact">
     <div class="container mt-5 bg-secondary rounded">
-        <h1 class="mb-3">Contactez-nous</h1>
+        <h1 class="mb-3 card-header">Contactez-nous</h1>
         <form method="post" action="{{ route('contact.submit') }}">
             @csrf
             <div class="mb-3">
