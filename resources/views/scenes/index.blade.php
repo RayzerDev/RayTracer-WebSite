@@ -30,6 +30,7 @@
             </select>
             </div>
                 <input type="submit" class="custom-button" value="Filtrer"><br>
+                <a href="{{ route('scenes.index', ['recent' => 1]) }}" class="custom-button text-decoration-none d-flex align-items-center">Les 5 + récents</a>
             </div>
         </form>
 
