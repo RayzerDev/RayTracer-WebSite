@@ -1,10 +1,11 @@
 <x-layout titre="Confirmation de Contact">
     <div class="container mt-5">
-        <h1>Merci pour votre message !</h1>
-
-        <p><strong>Prénom:</strong> {{ $prenom }}</p>
-        <p><strong>Nom:</strong>{{ $nom }}</p>
-        <p><strong>Email:</strong> {{ $email }}</p>
-        <p><strong>Message:</strong> {{ $message }}</p>
+        <h1>Merci pour votre message {{$prenom}} !</h1>
+        <div class="fs-4">
+            Nous allons le traiter sous peu. <br>Vous recevrez une réponse à l'adresse {{$email}}.
+        </div>
+        <div class="mt-3 text-center">
+            <a href="/" class="btn btn-primary">Retour</a>
+        </div>
     </div>
 </x-layout>
