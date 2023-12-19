@@ -5,7 +5,7 @@
 @endguest
 @auth
     <a href="{{route('home')}}">
-        <img src="{{asset('storage/user/avatars/user.png')}}" id="avatar-nav-bar">
+        <img src="{{asset('storage/' . Auth::user()->avatar)}}" id="avatar-nav-bar">
     </a>
     <a href="#" id="logout" class="text-decoration-none text-white mx-5">Se déconnecter</a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
